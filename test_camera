@@ -1,0 +1,15 @@
+function [camera,bearing] = test_camera(camera,robot)
+
+distance = sqrt((robot.x - camera.x)^2 + (robot.y - camera.y)^2);
+delete(camera.line);
+if(distance <= camera.max_range)
+    camera = make_camera(robot,camera.x,camera.y,camera.max_range,'b',line);
+%     plot([robot.x camera.x], [robot.y camera.y],'b');
+    bearing = atan2(robot.y - camera.y, robot.x - camera.x) - robot.theta;
+    bearing = bearing + (pi/36 - pi/90)*randn(1);
+else
+    delete(camera.line);
+    camera = make_camera(robot,camera.x,camera.y,camera.max_range, [0.5 0.5 0.5],line);
+    bearing = [];
+end
+
