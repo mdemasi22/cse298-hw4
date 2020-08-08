@@ -1,0 +1,20 @@
+Questions
+1.	Your fellow student makes the observation that although the robot is running the path open loop, its performance seems better than that with open loop odometry.
+Explain why this is/is not the case.
+This is the case since odometry doesn’t account for outside measurements, resulting in dead reckoning.
+What it does is it takes encoder measurements using the size of the wheels to measure the circumference in how much it traveled, 
+but this causes errors that add up over time. Open loop control considers the desired state and final state while using a controller to eliminate dead reckoning.
+
+2.	Plot the robot position error and covariance vs. time. Does this converge? Is this expected? Why/why not?
+Unfortunately, I was unable to plot the error and covariance vs. time since my code is written in such a way that it is not possible. 
+However, by observation I would expect them to converge since the covariance should cover the range of all the errors since it resembles
+and area of where the robot can possibly be.
+
+3.	At times we see dramatic jumps in the expected robot’s pose. When o these occur? Explain why these are expected?
+These occur when the robot sees a camera and has a better understanding of its position. This is expected because the robot has a better prediction of its position, 
+therefore eliminating most of the error causing the robot’s belief to be closer to the actual robot.
+
+4.	During the measurement update phase, there may be several camera measurements available that are processed serially by the filter.
+Do you think the order in which the measurements are processed affect filter performance? Why or why not?
+No, because it is not done by order. It is the calculated distance of these camera measurements that is important to be processed by the filter.
+As long as the robot has a good idea of where it is located it can make a better prediction regardless of the order in which the measurements are processed.
