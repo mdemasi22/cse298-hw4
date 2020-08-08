@@ -1,0 +1,14 @@
+function camera = make_camera(robot,x,y,max_range,color,line)
+
+camera.x = x;
+camera.y = y;
+camera.max_range = max_range;
+camera.color = color;
+camera.line = line;
+distance = sqrt((robot.x - camera.x)^2 + (robot.y - camera.y)^2);
+
+if(distance <= camera.max_range)
+   camera.line(1) = plot([robot.x camera.x], [robot.y camera.y],'b');
+end
+plot(camera.x,camera.y,'s','LineWidth',1,'MarkerEdgeColor',camera.color,...
+                'MarkerFaceColor',camera.color,'MarkerSize',6);
